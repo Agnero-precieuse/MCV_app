@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails de l'Événement</title>
+</head>
+<body>
+    <h1>{{ evenement.titre }}</h1>
+    <p><strong>Date :</strong> {{ evenement.date_debut|date:"d M Y H:i" }} - {{ evenement.date_fin|date:"d M Y H:i" }}</p>
+    <p><strong>Lieu :</strong> {{ evenement.lieu|default:"Lieu non précisé" }}</p>
+    <p><strong>Description :</strong></p>
+    <p>{{ evenement.description }}</p>
+    <p><a href="{% url 'agenda' %}">Retour à l'agenda</a></p>
+</body>
+</html>

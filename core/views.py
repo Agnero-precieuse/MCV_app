@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Evenement, Predications, EgliseInfo
 from .forms import ContactForm
 
@@ -35,5 +35,11 @@ def predications(request):
     return render(request, 'core/predications.html', {'predications': predications})
 
 def agenda(request):
-    evenements = Evenement.objects.all().order_by('date')  # Tous les événements, triés par date
+    # Récupérer les événements triés par date de début
+    evenements = Evenement.objects.all().order_by('date_debut')
     return render(request, 'core/agenda.html', {'evenements': evenements})
+
+# Vue pour les détails d'un événement
+def evenement_detail(request, evenement_id):
+    evenement = get_object_or_404(Evenement, id=evenement_id)
+    return render(request, 'core/evenement_detail.html', {'evenement': evenement})

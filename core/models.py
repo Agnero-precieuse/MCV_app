@@ -3,7 +3,9 @@ from django.db import models
 class Evenement(models.Model):
     titre = models.CharField(max_length=200)
     description = models.TextField()
-    date = models.DateTimeField()
+    date_debut = models.DateTimeField()  # Date de début de l'événement
+    date_fin = models.CharField(max_length=50, default="Non précisé")   # Date de fin de l'événement
+    lieu = models.CharField(max_length=255, blank=True, null=True)  # Lieu facultatif
 
     def __str__(self):
         return self.titre

@@ -14,16 +14,20 @@
             <li><a href="{% url 'contacts' %}">Contacts</a></li>
         </ul>
     </nav>
-    <h1>Agenda de l'Église MCV</h1>
-    <ul>
-        {% for evenement in evenements %}
-            <li>
-                <strong>{{ evenement.titre }}</strong> - {{ evenement.date|date:"d M Y H:i" }}<br>
-                <p>{{ evenement.description }}</p>
-            </li>
-        {% empty %}
-            <p>Aucun événement prévu.</p>
-        {% endfor %}
-    </ul>
+    <h1>Agenda des Événements</h1>
+    {% if evenements %}
+        <ul>
+            {% for evenement in evenements %}
+                <li>
+                    <h2>
+                        <a href="{% url 'evenement_detail' evenement.id %}">{{ evenement.titre }}</a>
+                    </h2>
+                    <p><strong>Date :</strong> {{ evenement.date_debut|date:"d M Y H:i" }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun événement à venir.</p>
+    {% endif %}
 </body>
 </html>
