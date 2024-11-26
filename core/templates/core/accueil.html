@@ -1,21 +1,7 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil</title>
-</head>
-<body>
-    <nav>
-        <ul>
-            <li><a href="{% url 'accueil' %}">Accueil</a></li>
-            <li><a href="{% url 'agenda' %}">Agenda</a></li>
-            <li><a href="{% url 'predications' %}">Prédications</a></li>
-            <li><a href="{% url 'contacts' %}">Contacts</a></li>
-        </ul>
-    </nav>
-    
+{% extends 'base.html' %}
+{% block title %}accueil{% endblock %}
+
+{% block content %}
     <h1>Bienvenue à la MISSION CHARISMATIQUE DES VAINQUEURS (MCV)</h1>
     <p>Ceci est la page d'accueil de l'application.</p>
-</body>
-</html>
+{% endblock %}

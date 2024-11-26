@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>predications</title>
-</head>
-<body>
-    <nav>
-        <ul>
-            <li><a href="{% url 'accueil' %}">Accueil</a></li>
-            <li><a href="{% url 'agenda' %}">Agenda</a></li>
-            <li><a href="{% url 'predications' %}">Prédications</a></li>
-            <li><a href="{% url 'contacts' %}">Contacts</a></li>
-        </ul>
-    </nav>
+{% extends 'base.html' %}
+{% block title %}accueil{% endblock %}
+
+{% block content %}
     <h1>predications de l'Église MCV</h1>
     <ul>
         {% for predication in predications %}
@@ -25,6 +14,4 @@
         {% empty %}
             <p>Aucune prédication disponible.</p>
         {% endfor %}
-    </ul>
-</body>
-</html>
+{% endblock %}

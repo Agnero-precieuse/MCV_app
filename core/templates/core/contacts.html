@@ -1,20 +1,7 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
-</head>
-<body>
-    <nav>
-        <ul>
-            <li><a href="{% url 'accueil' %}">Accueil</a></li>
-            <li><a href="{% url 'agenda' %}">Agenda</a></li>
-            <li><a href="{% url 'predications' %}">Prédications</a></li>
-            <li><a href="{% url 'contacts' %}">Contacts</a></li>
-        </ul>
-    </nav>
-    
+{% extends 'base.html' %}
+{% block title %}accueil{% endblock %}
+
+{% block content %}
     <h1>Contactez-Nous</h1>
     <form method="post">
         {% csrf_token %}
@@ -23,5 +10,4 @@
     </form>
 
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.6099777351988!2d-4.106425926419077!3d5.3233719359480185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfc1c1eaeeaaaaab%3A0x5a6c5ab0239e2542!2sMISSION%20CHARISMATIQUE%20DES%20VAINQUEURS!5e0!3m2!1sen!2sci!4v1730987786637!5m2!1sen!2sci" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-</body>
-</html>
+{% endblock %}

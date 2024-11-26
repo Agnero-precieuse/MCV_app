@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}mcv app{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <ul id="menu">
+            <li class="btn-menu"><a href="{% url 'accueil' %}">Accueil</a></li>
+            <li class="btn-menu"><a href="{% url 'agenda' %}">Agenda</a></li>
+            <li class="btn-menu"><a href="{% url 'predications' %}">Prédications</a></li>
+            <li class="btn-menu"><a href="{% url 'contacts' %}">Contacts</a></li>
+        </ul>
+    </nav>
+    
+    <div>
+        {% block content %}
+        <!--le contenu spécifique à chaque page sera ici-->
+        {% endblock %}
+    </div>
+
+</body>
+<style>
+    body{
+      background-color: #0883ea;
+      color: white;
+      margin:0;
+    } 
+    nav{
+      background-color: brown;
+    } 
+    #menu{
+      list-style-type:none;
+      display:flex;
+      justify-content: space-between;
+      margin: 0;
+      padding: 0;
+    }
+    .btn-menu{
+      margin: 10px;
+    }
+    .btn-menu a{
+        text-decoration:none;
+        color:white;
+    }
+  </style>
+</html>

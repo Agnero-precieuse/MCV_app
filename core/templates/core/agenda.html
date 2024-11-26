@@ -1,19 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}accueil{% endblock %}
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Agenda</title>
-</head>
-<body>
-    <nav>
-        <ul>
-            <li><a href="{% url 'accueil' %}">Accueil</a></li>
-            <li><a href="{% url 'agenda' %}">Agenda</a></li>
-            <li><a href="{% url 'predications' %}">Prédications</a></li>
-            <li><a href="{% url 'contacts' %}">Contacts</a></li>
-        </ul>
-    </nav>
+{% block content %}
     <h1>Agenda des Événements</h1>
     {% if evenements %}
         <ul>
@@ -29,5 +17,4 @@
     {% else %}
         <p>Aucun événement à venir.</p>
     {% endif %}
-</body>
-</html>
+{% endblock %}
