@@ -67,5 +67,71 @@
 #home-txt{
   margin-top: 80px;
 }
+
+
+/* agenda */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h1 {
+    color: #bf0426;
+}
+
+.event-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.event-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 300px;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.event-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.event-title a {
+    color: #bf0426;
+    text-decoration: none;
+}
+
+.event-title a:hover {
+    text-decoration: underline;
+}
+
+p {
+    margin: 10px 0;
+}
+
+.btn-details {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #bf0426;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.btn-details:hover {
+    background-color: #a10422;
+}
   </style>
 </html>

@@ -34,10 +34,25 @@ def predications(request):
     predications = Predications.objects.all().order_by('-date')  # Tous les predications, triés par date la plus récente
     return render(request, 'core/predications.html', {'predications': predications})
 
+from django.db.models import Q  # Pour effectuer des recherches complexes
+
 def agenda(request):
-    # Récupérer les événements triés par date de début
+    query = request.GET.get('q')  # Rechercher par titre
+    categorie = request.GET.get('categorie')  # Filtrer par catégorie
     evenements = Evenement.objects.all().order_by('date_debut')
-    return render(request, 'core/agenda.html', {'evenements': evenements})
+
+    # Recherche par mot-clé (titre ou description)
+    if query:
+        evenements = evenements.filter(
+            Q(titre__icontains=query) | Q(description__icontains=query)
+        )
+    
+    # Filtrer par catégorie
+    if categorie:
+        evenements = evenements.filter(categorie=categorie)
+
+    return render(request, 'core/agenda.html', {'evenements': evenements, 'query': query, 'categorie': categorie})
+
 
 # Vue pour les détails d'un événement
 def evenement_detail(request, evenement_id):

@@ -1,20 +1,41 @@
 {% extends 'base.html' %}
-{% block title %}accueil{% endblock %}
+{% block title %}Agenda{% endblock %}
 
 {% block content %}
-    <h1>Agenda des Événements</h1>
-    {% if evenements %}
-        <ul>
-            {% for evenement in evenements %}
-                <li>
-                    <h2>
-                        <a href="{% url 'evenement_detail' evenement.id %}">{{ evenement.titre }}</a>
-                    </h2>
-                    <p><strong>Date :</strong> {{ evenement.date_debut|date:"d M Y H:i" }}</p>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>Aucun événement à venir.</p>
-    {% endif %}
+<h1 style="text-align: center; margin-top: 20px;">Agenda des Événements</h1>
+
+<!-- Formulaire de recherche et de filtre -->
+<form method="get" action="{% url 'agenda' %}" style="margin-bottom: 20px;">
+    <input type="text" name="q" placeholder="Rechercher un événement..." value="{{ query|default:'' }}">
+    <select name="categorie">
+        <option value="">-- Filtrer par catégorie --</option>
+        <option value="seminaire" {% if categorie == "seminaire" %}selected{% endif %}>Séminaire</option>
+        <option value="priere" {% if categorie == "priere" %}selected{% endif %}>Réunion de prière</option>
+        <option value="concert" {% if categorie == "concert" %}selected{% endif %}>Concert</option>
+        <option value="autre" {% if categorie == "autre" %}selected{% endif %}>Autre</option>
+    </select>
+    <button type="submit">Rechercher</button>
+</form>
+
+{% if evenements %}
+<div class="event-list">
+    {% for evenement in evenements %}
+    <div class="event-card">
+        <h2 class="event-title">
+            <a href="{% url 'evenement_detail' evenement.id %}">{{ evenement.titre }}</a>
+        </h2>
+        <p><strong>Date :</strong> {{ evenement.date_debut|date:"d M Y H:i" }}</p>
+        {% if evenement.lieu %}
+        <p><strong>Lieu :</strong> {{ evenement.lieu }}</p>
+        {% endif %}
+        {% if evenement.categorie %}
+        <p><strong>Catégorie :</strong> {{ evenement.categorie }}</p>
+        {% endif %}
+        <a href="{% url 'evenement_detail' evenement.id %}" class="btn-details">Voir les détails</a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p style="text-align: center;">Aucun événement à venir.</p>
+{% endif %}
 {% endblock %}
