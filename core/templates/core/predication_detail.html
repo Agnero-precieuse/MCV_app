@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Détails de la prédication{% endblock %}
+
+{% block content %}
+<h1>{{ predication.titre }}</h1>
+<p><strong>Date :</strong> {{ predication.date|date:"d M Y H:i" }}</p>
+<p>{{ predication.description }}</p>
+{% if predication.audio %}
+    <audio controls>
+        <source src="{{ predication.audio.url }}" type="audio/mp3">
+        Votre navigateur ne prend pas en charge l'élément audio.
+    </audio>
+{% endif %}
+{% endblock %}

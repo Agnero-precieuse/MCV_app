@@ -3,15 +3,25 @@
 
 {% block content %}
     <h1>predications de l'Église MCV</h1>
-    <ul>
+    <form method="GET" action="{% url 'predications' %}">
+        <select name="category">
+            <option value="">Toutes les catégories</option>
+            <option value="priere" {% if category == 'priere' %}selected{% endif %}>Prière</option>
+            <option value="enseignement" {% if category == 'enseignement' %}selected{% endif %}>Enseignement</option>
+            <!-- Ajoutez d'autres options selon vos catégories -->
+        </select>
+        <button type="submit">Filtrer</button>
+    </form>
+        
+    <div class="predication-list">
         {% for predication in predications %}
-            <li>
-                <strong>{{ predication.titre }}</strong> - Prêché par {{ predication.orateur }} le {{ predication.date|date:"d M Y" }}<br>
-                {% if predication.audio_url %}
-                    <a href="{{ predication.audio_url }}">Écouter le predication</a>
-                {% endif %}
-            </li>
-        {% empty %}
-            <p>Aucune prédication disponible.</p>
+        <div class="predication-card">
+            <h2>{{ predication.titre }}</h2>
+            <p><strong>Date :</strong> {{ predication.date|date:"d M Y H:i" }}</p>
+            <p>{{ predication.description|truncatewords:30 }}</p>  <!-- Limite le texte affiché -->
+            <a href="{% url 'predication_detail' predication.id %}" class="btn-details">Voir les détails</a>
+        </div>
         {% endfor %}
+    </div>
+    
 {% endblock %}

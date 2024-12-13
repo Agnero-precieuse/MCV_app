@@ -31,10 +31,10 @@ def contacts(request):
     
 
 def predications(request):
-    predications = Predications.objects.all().order_by('-date')  # Tous les predications, triés par date la plus récente
-    return render(request, 'core/predications.html', {'predications': predications})
-
-from django.db.models import Q  # Pour effectuer des recherches complexes
+    category = request.GET.get('category', '')
+    predications = Predications.objects.filter(categorie__icontains=category).order_by('-date')
+    
+    return render(request, 'core/predications.html', {'predications': predications, 'category': category})
 
 def agenda(request):
     query = request.GET.get('q')  # Rechercher par titre
@@ -58,3 +58,8 @@ def agenda(request):
 def evenement_detail(request, evenement_id):
     evenement = get_object_or_404(Evenement, id=evenement_id)
     return render(request, 'core/evenement_detail.html', {'evenement': evenement})
+
+
+def predication_detail(request, predication_id):
+    predication = get_object_or_404(Predications, id=predication_id)
+    return render(request, 'core/predication_detail.html', {'predication': predication})
